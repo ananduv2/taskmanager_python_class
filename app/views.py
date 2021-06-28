@@ -20,3 +20,18 @@ def TaskCreate(request):
             return redirect('/')
     context={'forms': forms}
     return render(request,'app/create.html',context)
+
+
+def TaskUpdate(request,pk):
+    task = Task.objects.get(id=pk)
+    forms = CreateTask(instance=task)
+    if request.method == 'POST':
+        forms = CreateTask(request.POST,instance=task)
+        if forms.is_valid():
+            forms.save()
+            return redirect('/')
+    context={'forms': forms}
+    return render(request,'app/create.html',context)
+    
+
+

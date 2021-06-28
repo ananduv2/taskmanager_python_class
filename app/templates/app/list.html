@@ -29,7 +29,7 @@
             <td>{{i.title}}</td>
             <td>{{i.description}}</td>
             <td>{{i.complete}}</td>
-            <td><a href="">Edit</a></td>
+            <td><a href="{% url 'update_task' i.id %}">Edit</a></td>
             <td><a href="">Delete</a></td>
         </tr>
     {% endfor %}

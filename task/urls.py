@@ -20,6 +20,7 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TaskList,name='tasklist'),
-    path('create_task',TaskCreate,name='create_task'),
+    path('create_task/',TaskCreate,name='create_task'),
+    path('update_task/<str:pk>/',TaskUpdate,name='update_task'),
 
 ]

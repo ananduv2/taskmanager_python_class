@@ -1,13 +1,21 @@
 from django.shortcuts import render ,redirect , get_object_or_404
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from .models import *
 from .forms import *
 
 # Create your views here.
 
+def logout_view(request):
+    logout(request)
+    return HttpResponse("Logged Out")
+
+
+
+
 def TaskList(request):
     user = request.user
-    task=Task.objects.all()
+    task=Task.objects.filter(user=user)
     context={'task': task,'user': user}
     return render(request,'app/list.html',context)
 

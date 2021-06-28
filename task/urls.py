@@ -18,6 +18,8 @@ from django.urls import path
 from app.views import *
 
 urlpatterns = [
+    path('logout/', logout_view,name='logout'),
+
     path('admin/', admin.site.urls),
     path('', TaskList,name='tasklist'),
     path('create_task/',TaskCreate,name='create_task'),

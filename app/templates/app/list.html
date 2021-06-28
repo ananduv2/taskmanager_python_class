@@ -30,7 +30,7 @@
             <td>{{i.description}}</td>
             <td>{{i.complete}}</td>
             <td><a href="{% url 'update_task' i.id %}">Edit</a></td>
-            <td><a href="">Delete</a></td>
+            <td><a href="{% url 'delete_task' i.id %}">Delete</a></td>
         </tr>
     {% endfor %}
     </table>

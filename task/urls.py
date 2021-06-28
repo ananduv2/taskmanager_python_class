@@ -22,5 +22,6 @@ urlpatterns = [
     path('', TaskList,name='tasklist'),
     path('create_task/',TaskCreate,name='create_task'),
     path('update_task/<str:pk>/',TaskUpdate,name='update_task'),
+    path('delete_task/<str:pk>/',TaskDelete,name='delete_task'),
 
 ]

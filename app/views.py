@@ -1,4 +1,5 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import render ,redirect , get_object_or_404
+from django.http import HttpResponse
 from .models import *
 from .forms import *
 
@@ -32,6 +33,12 @@ def TaskUpdate(request,pk):
             return redirect('/')
     context={'forms': forms}
     return render(request,'app/create.html',context)
+
+
+def TaskDelete(request,pk):
+    task = get_object_or_404(Task, id = pk)
+    task.delete()
+    return redirect('/')
     
 
 

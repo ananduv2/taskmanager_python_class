@@ -13,9 +13,9 @@
 <body>
 
     <div>
-        <h3>Hi User</h3>
+        <h3>Hi {{user.username}}</h3>
     </div>
-    <a href="">Create Task</a><br><br>
+    <a href="{% url 'create_task' %}">Create Task</a><br><br>
     <table>
         <tr>
             <th>Title</th>

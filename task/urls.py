@@ -19,6 +19,7 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TaskList),
+    path('', TaskList,name='tasklist'),
+    path('create_task',TaskCreate,name='create_task'),
 
 ]

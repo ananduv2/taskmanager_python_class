@@ -1,4 +1,5 @@
 <h3>Create Task</h3><br><br>
+<a href="{% url 'tasklist' %}">Cancel</a>
     <form method='POST' action=''>
         {% csrf_token %}
         {{ forms.as_p}}

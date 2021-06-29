@@ -1,5 +1,6 @@
 from django.shortcuts import render ,redirect , get_object_or_404
 from django.contrib.auth import logout,login as auth_login,authenticate
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -18,7 +19,20 @@ def validate_login(request):
         if user is not None:
             auth_login(request,user)
             return redirect('/')
-        return HttpResponse("Done")
+        return HttpResponse("User validation failed")
+
+def createuser(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user =User.objects.create(username=username,password=password)
+        user.set_password(password)
+        user.save()
+        return redirect('/')
+    form = Login()
+    context={'form': form}
+    return render(request,'app/user.html',context)
+
 
 
 
@@ -35,6 +49,7 @@ def TaskList(request):
 
 
 def TaskCreate(request):
+    user=request.user
     forms = CreateTask()
     if request.method == 'POST':
         forms = CreateTask(request.POST)

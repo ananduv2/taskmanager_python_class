@@ -20,6 +20,7 @@ from app.views import *
 urlpatterns = [
     path('logout/', logout_view,name='logout'),
     path('validate/',validate_login,name='validate'),
+    path('createuser/',createuser,name='createuser'),
 
     path('admin/', admin.site.urls),
     path('', TaskList,name='tasklist'),

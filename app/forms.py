@@ -7,6 +7,7 @@ class CreateTask(ModelForm):
         model = Task
         fields ='__all__'
 
+
 class Login(ModelForm):
     class Meta:
         model = User

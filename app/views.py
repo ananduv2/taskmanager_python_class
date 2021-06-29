@@ -50,7 +50,8 @@ def TaskList(request):
 
 def TaskCreate(request):
     user=request.user
-    forms = CreateTask()
+    forms = CreateTask(initial={'user':user})
+    forms.fields['user'].disabled = True
     if request.method == 'POST':
         forms = CreateTask(request.POST)
         if forms.is_valid():

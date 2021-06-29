@@ -1,5 +1,5 @@
 from django.shortcuts import render ,redirect , get_object_or_404
-from django.contrib.auth import logout
+from django.contrib.auth import logout,login as auth_login,authenticate
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -8,13 +8,27 @@ from .forms import *
 
 def logout_view(request):
     logout(request)
-    return HttpResponse("Logged Out")
+    return redirect('/')
+
+def validate_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user =authenticate(username=username,password=password)
+        if user is not None:
+            auth_login(request,user)
+            return redirect('/')
+        return HttpResponse("Done")
 
 
 
 
 def TaskList(request):
     user = request.user
+    if user.is_anonymous:
+        form = Login()
+        context ={'form': form}
+        return render(request,'app/login.html',context)
     task=Task.objects.filter(user=user)
     context={'task': task,'user': user}
     return render(request,'app/list.html',context)
